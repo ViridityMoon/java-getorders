@@ -1,6 +1,6 @@
-package com.lambdaschool.javaorders.models;
+package com.lambdaschool.crudyorders.models;
 
-import org.springframework.aop.interceptor.CustomizableTraceInterceptor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -18,14 +18,16 @@ public class Order
 
     @ManyToOne
     @JoinColumn(name = "custcode", nullable = false)
-    private Customer custcode;
+    @JsonIgnoreProperties(value = "orders")
+    private Customer customer;
 
     private String orderdescription;
 
     @ManyToMany
     @JoinTable(name = "orderspayments",
             joinColumns = @JoinColumn(name = "ordnum"),
-            inverseJoinColumns = @JoinColumn(name = " paymentid"))
+            inverseJoinColumns = @JoinColumn(name = "paymentid"))
+    @JsonIgnoreProperties(value = "orders")
     private Set<Payment> payments = new HashSet<>();
 
     public Order() {
@@ -38,7 +40,7 @@ public class Order
     {
         this.ordamount = ordamount;
         this.advanceamount = advanceamount;
-        this.custcode = custcode;
+        this.customer = customer;
         this.orderdescription = orderdescription;
     }
 
@@ -51,11 +53,11 @@ public class Order
     }
 
     public Customer getCustomer() {
-        return custcode;
+        return customer;
     }
 
     public void setCustomer(Customer customer) {
-        this.custcode = customer;
+        this.customer = customer;
     }
 
     public long getOrdnum() {

@@ -1,6 +1,10 @@
-package com.lambdaschool.javaorders.models;
+package com.lambdaschool.crudyorders.models;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -24,8 +28,17 @@ public class Customer
     private String phone;
 
     @ManyToOne
-    @JoinColumn(name = "agentcode", nullable = false)
-    private Agent agent;
+    @JoinColumn(name = "agentcode",
+               nullable = false)
+    @JsonIgnoreProperties(value = "customers")
+    private Agent agentcode;
+
+    @OneToMany(mappedBy = "customer",
+               cascade = CascadeType.ALL,
+                orphanRemoval = true)
+    @JsonIgnoreProperties(value = "customers")
+    private List<Order> orders = new ArrayList<>();
+
 
     public Customer()
     {
@@ -41,7 +54,7 @@ public class Customer
                     double paymentamt,
                     double outstandingamt,
                     String phone,
-                    Agent agent) {
+                    Agent agentcode) {
         this.custname = custname;
         this.custcity = custcity;
         this.custcountry = custcountry;
@@ -52,15 +65,14 @@ public class Customer
         this.paymentamt = paymentamt;
         this.outstandingamt = outstandingamt;
         this.phone = phone;
-        this.agent = agent;
     }
 
-    public Agent getAgent() {
-        return agent;
+    public Agent getAgentcode() {
+        return agentcode;
     }
 
-    public void setAgent(Agent agent) {
-        this.agent = agent;
+    public void setAgentcode(Agent agent) {
+        this.agentcode = agent;
     }
 
     public long getCustcode() {
@@ -149,6 +161,14 @@ public class Customer
 
     public void setCustcountry(String custcountry) {
         this.custcountry = custcountry;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

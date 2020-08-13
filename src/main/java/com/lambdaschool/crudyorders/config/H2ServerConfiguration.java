@@ -1,4 +1,4 @@
-package com.lambdaschool.javaorders.config;
+package com.lambdaschool.crudyorders.config;
 
 import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Value;

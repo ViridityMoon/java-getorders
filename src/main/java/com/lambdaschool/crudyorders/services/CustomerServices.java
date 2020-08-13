@@ -1,6 +1,6 @@
-package com.lambdaschool.javaorders.services;
+package com.lambdaschool.crudyorders.services;
 
-import com.lambdaschool.javaorders.models.Customer;
+import com.lambdaschool.crudyorders.models.Customer;
 
 import java.util.List;
 
@@ -13,4 +13,8 @@ public interface CustomerServices
     Customer findCustomerByCode(long c);
 
     List<Customer> findCustomerByNameLike(String n);
+
+    void delete(long id);
+
+    Customer update(Customer c, long id);
 }

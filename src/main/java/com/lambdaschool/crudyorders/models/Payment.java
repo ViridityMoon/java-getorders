@@ -1,4 +1,6 @@
-package com.lambdaschool.javaorders.models;
+package com.lambdaschool.crudyorders.models;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,6 +22,7 @@ public class Payment
     }
 
     @ManyToMany(mappedBy = "payments")
+    @JsonIgnoreProperties("payments")
     private Set<Order> orders = new HashSet<>();
 
     public Payment(String type)

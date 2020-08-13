@@ -1,6 +1,6 @@
-package com.lambdaschool.javaorders.repositories;
+package com.lambdaschool.crudyorders.repositories;
 
-import com.lambdaschool.javaorders.models.Payment;
+import com.lambdaschool.crudyorders.models.Payment;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PaymentsRepository extends CrudRepository<Payment, Long>

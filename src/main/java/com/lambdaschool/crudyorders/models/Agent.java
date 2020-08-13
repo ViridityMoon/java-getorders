@@ -1,4 +1,6 @@
-package com.lambdaschool.javaorders.models;
+package com.lambdaschool.crudyorders.models;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,7 +23,10 @@ public class Agent
     private String phone;
     private String country;
 
-    @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "agentcode",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @JsonIgnoreProperties(value = "agent")
     private List<Customer> customers = new ArrayList<>();
 
     public Agent()

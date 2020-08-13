@@ -1,6 +1,6 @@
-package com.lambdaschool.javaorders.repositories;
+package com.lambdaschool.crudyorders.repositories;
 
-import com.lambdaschool.javaorders.models.Customer;
+import com.lambdaschool.crudyorders.models.Customer;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
